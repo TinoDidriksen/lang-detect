@@ -100,6 +100,13 @@ int main(int argc, char *argv[]) {
 				&text_bytes,
 				&is_reliable);
 
+			// These are just too similar, so regard them all as the same
+			if (langhint == DANISH || langhint == SWEDISH || langhint == NORWEGIAN) {
+				if (lang_detected == DANISH || lang_detected == SWEDISH || lang_detected == NORWEGIAN) {
+					lang_detected = langhint;
+				}
+			}
+
 			if (lang_detected != langhint && lang_detected != UNKNOWN_LANGUAGE) {
 				std::cout << head << std::endl;
 				for (size_t i = 0; i < 3; ++i) {
