@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <cstdio> // Because compact_lang_det.h needs it but doesn't include it
 #include <compact_lang_det.h>
 #include <encodings.h>
 #include <iostream>
