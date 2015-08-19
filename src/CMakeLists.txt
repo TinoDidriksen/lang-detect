@@ -20,9 +20,9 @@ add_executable(lang-detect
 	../cld2/internal/cld_generated_cjk_uni_prop_80.cc
 	../cld2/internal/cld_generated_score_quad_octa_1024_256.cc
 	../cld2/internal/cld2_generated_cjk_compatible.cc
-	../cld2/internal/cld2_generated_deltaoctachrome0614.cc
-	../cld2/internal/cld2_generated_distinctoctachrome0604.cc
-	../cld2/internal/cld2_generated_quadchrome0715.cc
+	../cld2/internal/cld2_generated_deltaoctachrome.cc
+	../cld2/internal/cld2_generated_distinctoctachrome.cc
+	../cld2/internal/cld2_generated_quadchrome_2.cc
 	../cld2/internal/cldutil.cc
 	../cld2/internal/cldutil_shared.cc
 	../cld2/internal/compact_lang_det.cc
