@@ -62,6 +62,8 @@ int main(int argc, char *argv[]) {
 
 	std::string head, body, body_all, line;
 	while (std::getline(std::cin, line)) {
+		line.push_back('\n');
+
 		// <s lines open chunks
 		if (line[0] == '<' && line[1] == 's') {
 			head = line;
@@ -110,9 +112,9 @@ int main(int argc, char *argv[]) {
 			}
 
 			if (lang_detected == langhint) {
-				std::cout << head << std::endl;
-				std::cout << body_all << std::endl;
-				std::cout << line << std::endl;
+				std::cout << head;
+				std::cout << body_all;
+				std::cout << line << "\n";
 			}
 
 			body.clear();
