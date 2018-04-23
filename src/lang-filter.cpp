@@ -23,6 +23,12 @@ using namespace CLD2;
 int main(int argc, char *argv[]) {
 	std::vector<std::string> args(argv, argv + argc);
 	Language langhint = UNKNOWN_LANGUAGE;
+	Language guess = UNKNOWN_LANGUAGE;
+
+	if (args.size() > 1 && args[1] == "-g") {
+		guess = DANISH;
+		args.erase(args.begin() + 1);
+	}
 
 	if (args.size() > 1) {
 		if (args[1] == "dan") {
@@ -58,6 +64,11 @@ int main(int argc, char *argv[]) {
 		else if (args[1] == "swe") {
 			langhint = SWEDISH;
 		}
+	}
+
+	if (guess != UNKNOWN_LANGUAGE) {
+		guess = langhint;
+		langhint = UNKNOWN_LANGUAGE;
 	}
 
 	std::string head, body, body_all, line;
@@ -110,8 +121,13 @@ int main(int argc, char *argv[]) {
 					lang_detected = langhint;
 				}
 			}
+			if (guess == DANISH || guess == SWEDISH || guess == NORWEGIAN) {
+				if (lang_detected == DANISH || lang_detected == SWEDISH || lang_detected == NORWEGIAN) {
+					lang_detected = guess;
+				}
+			}
 
-			if (lang_detected == langhint) {
+			if ((guess != UNKNOWN_LANGUAGE && lang_detected == guess) || (guess == UNKNOWN_LANGUAGE && lang_detected == langhint)) {
 				std::cout << head;
 				std::cout << body_all;
 				std::cout << line << "\n";
