@@ -25,6 +25,12 @@ int main(int argc, char *argv[]) {
 	Language langhint = UNKNOWN_LANGUAGE;
 	Language guess = UNKNOWN_LANGUAGE;
 
+	bool invert = false;
+	if (args.size() > 1 && args[1] == "-i") {
+		invert = true;
+		args.erase(args.begin() + 1);
+	}
+
 	if (args.size() > 1 && args[1] == "-g") {
 		guess = DANISH;
 		args.erase(args.begin() + 1);
@@ -115,7 +121,11 @@ int main(int argc, char *argv[]) {
 				&text_bytes,
 				&is_reliable);
 
-			if ((guess != UNKNOWN_LANGUAGE && lang_detected == guess) || (guess == UNKNOWN_LANGUAGE && lang_detected == langhint)) {
+			bool good = (guess != UNKNOWN_LANGUAGE && lang_detected == guess) || (guess == UNKNOWN_LANGUAGE && lang_detected == langhint);
+			if (invert) {
+				good = !good;
+			}
+			if (good) {
 				std::cout << head;
 				std::cout << body_all;
 				std::cout << line << "\n";
